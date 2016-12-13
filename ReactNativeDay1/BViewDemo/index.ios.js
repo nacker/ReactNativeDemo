@@ -12,20 +12,17 @@ import {
   View
 } from 'react-native';
 
-export default class BViewDemo extends Component {
+class BViewDemo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {/*<Text>其实我是存在的</Text>*/}
+        <View style={styles.innerViewStyle}>
+          <Text>我是里面的View</Text>
+        </View>
+        <View style={styles.innerViewStyle2}>
+          <Text>我是里面下面的View</Text>
+         </View>
       </View>
     );
   }
@@ -33,21 +30,23 @@ export default class BViewDemo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // flex: 1,
+    backgroundColor:'red',
+     width:300,
+     height:100,
+     // 改变主轴的方向 ---> 默认是竖向
+     flexDirection: 'row'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  innerViewStyle: {
+    backgroundColor:'red',
+    width:100
+
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
+  innerViewStyle2: {
+    backgroundColor:'yellow',
+    width:100
+  }
 });
 
 AppRegistry.registerComponent('BViewDemo', () => BViewDemo);

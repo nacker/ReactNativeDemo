@@ -9,45 +9,43 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 
-export default class EScrollViewDemo extends Component {
+class EScrollViewDemo extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+       <ScrollView
+           horizontal={true}
+           showsHorizontalScrollIndicator={false}
+           pagingEnabled={true}
+           // scrollEnabled={false}
+        >
+         {this.renderChildView()}
+       </ScrollView>
     );
+  }
+
+  renderChildView(){
+     // 数组
+     var allChild = [];
+     var colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+     // 遍历
+    for(var i=0; i<5; i++){
+      allChild.push(
+          <View key={i} style={{backgroundColor:colors[i], width:375, height:120}}>
+             <Text>{i}</Text>
+          </View>
+      );
+    }
+    // 返回
+    return allChild;
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
 });
 
 AppRegistry.registerComponent('EScrollViewDemo', () => EScrollViewDemo);

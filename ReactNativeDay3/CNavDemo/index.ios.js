@@ -9,45 +9,105 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TabBarIOS
 } from 'react-native';
 
-export default class CNavDemo extends Component {
+var CNavDemo = React.createClass({
+
+   // 设置初始值
+    getInitialState(){
+       return{
+           // 默认被选中的tabBarItem
+           selectedTabBarItem: 'home'
+       }
+    },
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {/*头部*/}
+        <View style={styles.headerViewStyle}>
+           <Text style={{color:'white'}}>Tab选项卡的切换</Text>
+        </View>
+
+        {/*选项卡*/}
+        <TabBarIOS
+            barTintColor='orange'
+            tintColor = 'purple'
+        >
+            {/*第一块*/}
+            <TabBarIOS.Item
+                systemIcon="downloads"
+                title="张三"
+                badge="3"
+                selected={this.state.selectedTabBarItem == 'home'}
+                onPress = {()=>{this.setState({selectedTabBarItem: 'home'})}}
+            >
+               <View style={[styles.commonViewStyle,{backgroundColor:'red'}]}>
+                   <Text>首页</Text>
+               </View>
+            </TabBarIOS.Item>
+
+            {/*第二块*/}
+            <TabBarIOS.Item
+                systemIcon="bookmarks"
+                selected={this.state.selectedTabBarItem == 'second'}
+                onPress = {()=>{this.setState({selectedTabBarItem: 'second'})}}
+            >
+                <View style={[styles.commonViewStyle,{backgroundColor:'green'}]}>
+                    <Text>第二页</Text>
+                </View>
+            </TabBarIOS.Item>
+
+            {/*第三块*/}
+            <TabBarIOS.Item
+                systemIcon="downloads"
+                selected={this.state.selectedTabBarItem == 'three'}
+                onPress = {()=>{this.setState({selectedTabBarItem: 'three'})}}
+            >
+                <View style={[styles.commonViewStyle,{backgroundColor:'blue'}]}>
+                    <Text>第三页</Text>
+                </View>
+            </TabBarIOS.Item>
+
+            {/*第四块*/}
+            <TabBarIOS.Item
+                systemIcon="search"
+                selected={this.state.selectedTabBarItem == 'four'}
+                onPress = {()=>{this.setState({selectedTabBarItem: 'four'})}}
+            >
+                <View style={[styles.commonViewStyle,{backgroundColor:'purple'}]}>
+                    <Text>第四页</Text>
+                </View>
+            </TabBarIOS.Item>
+        </TabBarIOS>
       </View>
     );
   }
-}
+});
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex:1,
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
+  headerViewStyle:{
+      height:64,
+      backgroundColor:'black',
+      justifyContent:'center',
+      alignItems:'center'
+   },
+
+  commonViewStyle:{
+      flex:1,
+
+      justifyContent:'center',
+      alignItems:'center'
+
+  }
 });
 
 AppRegistry.registerComponent('CNavDemo', () => CNavDemo);

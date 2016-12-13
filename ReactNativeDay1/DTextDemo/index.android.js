@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class DTextDemo extends Component {
+class DTextDemo extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -23,7 +23,6 @@ export default class DTextDemo extends Component {
           To get started, edit index.android.js
         </Text>
         <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
       </View>
